@@ -1,4 +1,4 @@
-name: Update AOSP Related Stuff
+name: IMP STUFF
 on:
   schedule:
     - cron: "0 0 * * sun"
