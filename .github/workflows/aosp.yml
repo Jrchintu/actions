@@ -1,23 +1,21 @@
-name: IMP STUFF
+name: AOSP-STUFF
 on:
   schedule:
-    - cron: "0 0 * * sun"
-    - cron: "0 0 * * tue"
-    - cron: "0 0 * * thu"
+    - cron: "0 0 * * mon"
+    - cron: "0 0 * * wed"
     - cron: "0 0 * * fri"
+    - cron: "0 0 * * sun"
   workflow_dispatch:
   
 env:
   GIT_PASS: ${{ secrets.GIT_PASS }}
+  TZ: Asia/Kolkata
   
 jobs:
   job1:
     name: Update Binary
     runs-on: ubuntu-20.04
-    env:
-      TZ: Asia/Kolkata
-      GIT_PASS: ${{ secrets.GIT_PASS }}
     steps:
     - uses: actions/checkout@v2
-    - name: Main Job
+    - name: Run Script
       run: curl -LO https://raw.githubusercontent.com/Jrchintu/external_bromite-webview/R11/update.sh && chmod a+x ./update.sh && ./update.sh
