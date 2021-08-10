@@ -19,18 +19,3 @@ jobs:
     - uses: actions/checkout@v2
     - name: Run Script
       run: curl -LO https://raw.githubusercontent.com/Jrchintu/external_bromite-webview/R11/update.sh && chmod a+x ./update.sh && ./update.sh
-  
-  merge-upstream:
-    runs-on: ubuntu-latest
-    steps: 
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          ref: R11             # set the branch to merge to
-          fetch-depth: 0 
-      - name: Merge Upstream
-        uses: exions/merge-upstream@v1
-        with:
-          upstream: shashank1436/kernel_xiaomi_mido      # set the upstream repo
-          upstream-branch: r11                           # set the upstream branch to merge from
-          branch: R11                                    # set the branch to merge to
