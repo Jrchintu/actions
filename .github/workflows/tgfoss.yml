@@ -1,0 +1,18 @@
+name: TGFOSS_MAKER
+on:
+  workflow_dispatch:
+  
+env:
+  GIT_PASS: ${{ secrets.GIT_PASS }}
+  APP_ID: ${{ secrets.APP_ID }}
+  APP_HASH: ${{ secrets.APP_HASH }}
+  TZ: Asia/Kolkata
+  
+jobs:
+  job1:
+    name: TGFOSS_COMPILE
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: Run Script
+      run: rm -rf ./tgfoss.sh && curl -LO https://raw.githubusercontent.com/Jrchintu/actions/main/tgfoss.sh && chmod a+x ./tgfoss.sh && ./tgfoss.sh
