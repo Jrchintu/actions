@@ -40,6 +40,6 @@ chmod a+x ./*
 ./patch_boringssl.sh
 ./build_boringssl.sh
 cd ../..
-echo -e 'APP_ID = 12444\nAPP_HASH = aaaabaaabbbbbbccccccfffffff001122' >./API_KEYS
+echo -e "APP_ID = $APP_ID\nAPP_HASH = $APP_HASH" >./API_KEYS
 ./gradlew assembleAfatRelease
 ./gradlew test
