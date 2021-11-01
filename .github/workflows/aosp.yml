@@ -14,8 +14,9 @@ env:
 jobs:
   job1:
     name: Update Binary
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - name: Run Script
       run: curl -LO https://raw.githubusercontent.com/Jrchintu/external_bromite-webview/R11/update.sh && chmod a+x ./update.sh && ./update.sh
+    - uses: gautamkrishnar/keepalive-workflow@master # using the workflow with default settings
