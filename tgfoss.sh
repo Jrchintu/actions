@@ -22,15 +22,10 @@ unzip -qq commandlinetools-linux-*latest.zip -d "${ANDROID_SDK_ROOT}"/cmdline-to
 mv "${ANDROID_SDK_ROOT}"/cmdline-tools/cmdline-tools "${ANDROID_SDK_ROOT}"/cmdline-tools/latest
 rm -rf ./*.zip*
 
-# Accept license
-yes | sdkmanager -licenses
-
 # Install Ndk+cmake
-PATH="$PATH:$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$ANDROID_SDK_ROOT/cmdline-tools/tools/bin:$ANDROID_HOME/cmake/3.10.2.4988404/bin"
-echo y | sdkmanager "ndk;22.1.7171670" # OLD=21.1.6352462
-export NDK="$ANDROID_HOME/ndk/22.1.7171670"
-echo y | sdkmanager "cmake;3.6.4111459"
-echo y | sdkmanager "cmake;3.10.2.4988404"
+PATH="$PATH:$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$ANDROID_SDK_ROOT/cmdline-tools/tools/bin:$ANDROID_HOME/cmake/*/bin"
+yes | sdkmanager ndk-bundle
+export NDK="$ANDROID_HOME/ndk/*"
 
 # Clone tgfoss
 git clone --recursive --depth=1 -b master https://github.com/Telegram-FOSS-Team/Telegram-FOSS.git "$HOME"/tgfoss
