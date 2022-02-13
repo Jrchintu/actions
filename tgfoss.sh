@@ -17,7 +17,7 @@ source /etc/environment
 # Downlaod Sdk
 mkdir -p "${ANDROID_SDK_ROOT}"
 chmod -R a+rwx "${ANDROID_SDK_ROOT}"
-wget https://dl.google.com/android/repository/commandlinetools-linux-7583922_latest.zip
+wget https://dl.google.com/android/repository/commandlinetools-linux-8092744_latest.zip
 unzip -qq commandlinetools-linux-7583922_latest.zip -d "${ANDROID_SDK_ROOT}"/cmdline-tools
 mv "${ANDROID_SDK_ROOT}"/cmdline-tools/cmdline-tools "${ANDROID_SDK_ROOT}"/cmdline-tools/latest
 rm -rf ./*.zip*
