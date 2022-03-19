@@ -3,21 +3,18 @@
 sudo apt update -y && sudo apt upgrade -y
 sudo apt install -y git cmake ninja-build golang openjdk-8-jdk python unzip
 
+#Version Variable
+CMDLVER='8092744'
+
 # ANDROID_HOME is deprecated, but older versions of Gradle rely on it
 export ANDROID_ROOT="$PWD/ANDROID"
 export ANDROID_SDK_ROOT="${ANDROID_ROOT}/sdk"
 export ANDROID_NDK_ROOT="${ANDROID_SDK_ROOT}/ndk-bundle"
 export NINJA_PATH="$(which ninja)"
-echo "ANDROID_SDK_ROOT=\"${ANDROID_SDK_ROOT}\"" | sudo tee -a /etc/environment
-echo "ANDROID_HOME=\"${ANDROID_SDK_ROOT}\""     | sudo tee -a /etc/environment
-echo "ANDROID_NDK_HOME=\"${ANDROID_NDK_ROOT}\"" | sudo tee -a /etc/environment
-echo "ANDROID_NDK_ROOT=\"${ANDROID_NDK_ROOT}\"" | sudo tee -a /etc/environment
-source /etc/environment
 
 # Downlaod Sdk
-mkdir -p "${ANDROID_SDK_ROOT}"
-chmod -R a+rwx "${ANDROID_SDK_ROOT}"
-wget https://dl.google.com/android/repository/commandlinetools-linux-8092744_latest.zip
+mkdir -p "${ANDROID_SDK_ROOT}" && chmod -R a+rwx "${ANDROID_SDK_ROOT}"
+wget "https://dl.google.com/android/repository/commandlinetools-linux-$CMDLVER_latest.zip"
 unzip -qq commandlinetools-linux-*latest.zip -d "${ANDROID_SDK_ROOT}"/cmdline-tools
 mv "${ANDROID_SDK_ROOT}"/cmdline-tools/cmdline-tools "${ANDROID_SDK_ROOT}"/cmdline-tools/latest
 rm -rf ./*.zip*
@@ -39,5 +36,4 @@ chmod a+x ./*
 ./build_boringssl.sh
 cd ../..
 echo -e "APP_ID = $APP_ID\nAPP_HASH = $APP_HASH" >./API_KEYS
-./gradlew assembleAfatRelease
-./gradlew test
+./gradlew assembleRelease
